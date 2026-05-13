@@ -51,6 +51,12 @@ function startTraining(difficulty) {
   generatePattern();
   updateUI();
   switchScreen('difficulty-screen', 'trainer-screen');
+  
+  // Initialize 3D cube
+  setTimeout(() => {
+    initCubeOnTrainerLoad();
+  }, 100);
+  
   startTimer();
   setupKeyListener();
 }
@@ -86,6 +92,11 @@ function handleKeyPress(event) {
   if (!['W', 'A', 'S', 'D'].includes(key)) return;
 
   event.preventDefault();
+
+  // Rotate cube based on key press
+  if (typeof rotateCubeWASD === 'function') {
+    rotateCubeWASD(key);
+  }
 
   gameState.totalPresses++;
   const expectedKey = gameState.pattern[gameState.currentIndex];
@@ -172,6 +183,9 @@ function pauseTraining() {
 function resetTraining() {
   document.removeEventListener('keydown', handleKeyPress);
   clearInterval(gameState.timerInterval);
+  if (typeof resetCubeRotation === 'function') {
+    resetCubeRotation();
+  }
   startTraining(gameState.difficulty);
 }
 
