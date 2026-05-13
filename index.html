@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WASD Trainer</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
   <!-- Main Menu Screen -->
@@ -47,62 +48,74 @@
 
   <!-- Trainer Screen -->
   <div id="trainer-screen" class="screen">
-    <div class="trainer-container">
-      <div class="header">
-        <h2 id="mode-title">Training Mode</h2>
-        <button class="btn-close" onclick="endTraining()">✕</button>
-      </div>
-
-      <!-- Stats Grid -->
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-label">Accuracy</div>
-          <div class="stat-value" id="accuracy">0<span class="stat-unit">%</span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Speed</div>
-          <div class="stat-value" id="speed">0<span class="stat-unit">ppm</span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Presses</div>
-          <div class="stat-value" id="presses">0<span class="stat-unit">total</span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Time</div>
-          <div class="stat-value" id="time">0<span class="stat-unit">s</span></div>
+    <div class="trainer-wrapper">
+      <!-- 3D Cube Display -->
+      <div class="cube-container">
+        <div id="cube-canvas"></div>
+        <div class="cube-info">
+          <p id="cube-rotation">Rotations: 0</p>
         </div>
       </div>
 
-      <!-- Pattern Display -->
-      <div class="pattern-display">
-        <div class="pattern-label">Sequence to Follow:</div>
-        <div class="pattern-sequence" id="pattern">W A S D</div>
-        <div class="next-key">Next: <span id="next-key">W</span></div>
-      </div>
-
-      <!-- Feedback -->
-      <div class="feedback" id="feedback"></div>
-
-      <!-- Keyboard Display -->
-      <div class="keyboard-display">
-        <div class="key-row">
-          <div class="key" id="key-W">W</div>
+      <!-- Trainer Panel -->
+      <div class="trainer-container">
+        <div class="header">
+          <h2 id="mode-title">Training Mode</h2>
+          <button class="btn-close" onclick="endTraining()">✕</button>
         </div>
-        <div class="key-row">
-          <div class="key" id="key-A">A</div>
-          <div class="key" id="key-S">S</div>
-          <div class="key" id="key-D">D</div>
-        </div>
-      </div>
 
-      <!-- Controls -->
-      <div class="controls">
-        <button class="btn btn-control" onclick="pauseTraining()" id="pause-btn">⏸ Pause</button>
-        <button class="btn btn-control" onclick="resetTraining()">🔄 Reset</button>
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-label">Accuracy</div>
+            <div class="stat-value" id="accuracy">0<span class="stat-unit">%</span></div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Speed</div>
+            <div class="stat-value" id="speed">0<span class="stat-unit">ppm</span></div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Presses</div>
+            <div class="stat-value" id="presses">0<span class="stat-unit">total</span></div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Time</div>
+            <div class="stat-value" id="time">0<span class="stat-unit">s</span></div>
+          </div>
+        </div>
+
+        <!-- Pattern Display -->
+        <div class="pattern-display">
+          <div class="pattern-label">Sequence to Follow:</div>
+          <div class="pattern-sequence" id="pattern">W A S D</div>
+          <div class="next-key">Next: <span id="next-key">W</span></div>
+        </div>
+
+        <!-- Feedback -->
+        <div class="feedback" id="feedback"></div>
+
+        <!-- Keyboard Display -->
+        <div class="keyboard-display">
+          <div class="key-row">
+            <div class="key" id="key-W">W</div>
+          </div>
+          <div class="key-row">
+            <div class="key" id="key-A">A</div>
+            <div class="key" id="key-S">S</div>
+            <div class="key" id="key-D">D</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <button class="btn btn-control" onclick="pauseTraining()" id="pause-btn">⏸ Pause</button>
+          <button class="btn btn-control" onclick="resetTraining()">🔄 Reset</button>
+        </div>
       </div>
     </div>
   </div>
 
+  <script src="cube-renderer.js"></script>
   <script src="trainer.js"></script>
 </body>
 </html>
