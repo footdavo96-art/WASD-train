@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WASD Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Main Menu Screen -->
+  <div id="menu-screen" class="screen active">
+    <div class="menu-container">
+      <h1>⌨️ WASD Trainer</h1>
+      <p class="subtitle">Master your keyboard with speed and precision</p>
+      <div class="menu-buttons">
+        <button class="btn btn-primary" onclick="selectMode('speedcube')">🎲 Speedcube Mode</button>
+        <button class="btn btn-primary" onclick="selectMode('general')">🎯 General Training</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Difficulty Selection Screen -->
+  <div id="difficulty-screen" class="screen">
+    <div class="difficulty-container">
+      <h2>Select Difficulty</h2>
+      <div class="difficulty-grid">
+        <div class="difficulty-card" onclick="startTraining('easy')">
+          <div class="difficulty-level">🟢 Easy</div>
+          <div class="difficulty-desc">Slow pace, 5-10 keys<br>Perfect for beginners</div>
+        </div>
+        <div class="difficulty-card" onclick="startTraining('medium')">
+          <div class="difficulty-level">🟡 Medium</div>
+          <div class="difficulty-desc">Normal pace, 10-15 keys<br>Good for practice</div>
+        </div>
+        <div class="difficulty-card" onclick="startTraining('hard')">
+          <div class="difficulty-level">🔴 Hard</div>
+          <div class="difficulty-desc">Fast pace, 15-20 keys<br>Challenge yourself</div>
+        </div>
+        <div class="difficulty-card" onclick="startTraining('expert')">
+          <div class="difficulty-level">⚫ Expert</div>
+          <div class="difficulty-desc">Extreme speed, 20+ keys<br>Master level</div>
+        </div>
+      </div>
+      <button class="btn btn-back" onclick="backToMenu()">← Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- Trainer Screen -->
+  <div id="trainer-screen" class="screen">
+    <div class="trainer-container">
+      <div class="header">
+        <h2 id="mode-title">Training Mode</h2>
+        <button class="btn-close" onclick="endTraining()">✕</button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-value" id="accuracy">0<span class="stat-unit">%</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Speed</div>
+          <div class="stat-value" id="speed">0<span class="stat-unit">ppm</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Presses</div>
+          <div class="stat-value" id="presses">0<span class="stat-unit">total</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Time</div>
+          <div class="stat-value" id="time">0<span class="stat-unit">s</span></div>
+        </div>
+      </div>
+
+      <!-- Pattern Display -->
+      <div class="pattern-display">
+        <div class="pattern-label">Sequence to Follow:</div>
+        <div class="pattern-sequence" id="pattern">W A S D</div>
+        <div class="next-key">Next: <span id="next-key">W</span></div>
+      </div>
+
+      <!-- Feedback -->
+      <div class="feedback" id="feedback"></div>
+
+      <!-- Keyboard Display -->
+      <div class="keyboard-display">
+        <div class="key-row">
+          <div class="key" id="key-W">W</div>
+        </div>
+        <div class="key-row">
+          <div class="key" id="key-A">A</div>
+          <div class="key" id="key-S">S</div>
+          <div class="key" id="key-D">D</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button class="btn btn-control" onclick="pauseTraining()" id="pause-btn">⏸ Pause</button>
+        <button class="btn btn-control" onclick="resetTraining()">🔄 Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="trainer.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "wasd-trainer",
+  "version": "1.0.0",
+  "description": "A WASD keyboard trainer for speedcubing and general practice",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "footdavo96-art",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^latest"
+  }
+}
